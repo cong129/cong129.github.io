@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イム　プレゼン</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="titleSlide">
+        <div>
+            <h1>Final <br>Presentation</h1>
+            <h6>23.3.28　林　熙權</h3>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">
+            <h1><b>Tetris</b> only using <i>HTML+CSS+Javascript</i></h1>
+        </div>
+        <div class="leftcol">
+            <h3>Tetrisを選んだ理由</h3>
+            <ul>
+                <li>元もPythonのユーザーで色々自分で作ったことがあり、講義の最初は簡単だった</li>
+                <li>DOMからjavascriptがHTMLとcssとやり取りするのが非常に面白い<br>
+                    ⇒ なれるまで練習したい！</li>
+                <li>javascriptによるHTMLタグの追加/削除、タグ内のclassの追加/削除でcssと連携し、<br>
+                    HTMLの要素が見えたり消えたりするのをやりたい<br>
+                    ⇒ canvasも使わずulタグliタグで作られたTetris発見
+                </li>
+                <h2><b><a href="http://127.0.0.1:5500/_final_project/index.html">Clone Coding開始</a></b></h2>
+
+        </div>
+        <div class="rightcol">
+            <div>
+
+                <img src="./picture/tetris_main.png" height="500px">
+            </div>
+            <div>
+
+                <img src="./picture/gameover.png" height="500px">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="slide">
+
+        <div class="title">
+            <h1>Points to Learn</h1>
+        </div>
+
+        <div class="leftcol">
+            <ul>
+                <li>jvascriptでhtml作成
+                    <ul>
+                        <li>createElementでここまでできるのを実感</li>
+                    </ul>
+                </li>
+                <li>element.classList.add()
+                    <ul>
+                        <li>ある四角のliタグにmovingタグを追加し,その部分のバックグラウンド色が変わる<br>ようにCSSでclassを定義していることを見て<i><b>感動</b></i>。。。！</li>
+                    </ul>
+                </li>
+
+                <li>element.classList.remove()
+                    <ul>
+                        <li>ブロックが動かないところまで来た時にmovingタグを消して固定するように</li>
+                    </ul>
+                </li>
+                <li>setInterval(function,duration)
+                    <ul>
+                        <li>
+                            ゲームのフレームのようにdurationごとにfunctionを実行する
+                        </li>
+                    </ul>
+                </li>
+                <li>clearInterval(function)
+                    <ul>
+                        <li>
+                            ゲームのフレームのようにdurationごとにfunctionを実行する
+                        </li>
+                    </ul>
+                </li>
+                <li>Object destructuring
+                    <ul>
+                        <li>
+                            const {type,direction,top,left} = tempMovingItem;
+                        </li>
+                    </ul>
+                </li>
+                <li>forEach() => some(.... return ...)</li>
+                <li>コードの作り方
+                    <ul>
+                        <li>DOMを最初に</li>
+                        <li>変数宣言</li>
+                        <li>関数定義</li>
+                        <li>mainコード：今回は<b><i style="color:#edb313; -webkit-text-stroke:1px #000;">eventListenerのみ</i></b>で完成！</li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="rightcol">
+            <div style="font-size: 14px;"">
+                <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">BLOCKS</span> <span style="color: #d0d0d0">from</span> <span style="color: #ed9d13">&quot;./blocks.js&quot;</span><span style="color: #d0d0d0">;</span>
+<span style="color: #999999; font-style: italic">//DOM</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">playground</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">document</span><span style="color: #d0d0d0">.querySelector(</span><span style="color: #ed9d13">&quot;.playground &gt; ul&quot;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">gameText</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">document</span><span style="color: #d0d0d0">.querySelector(</span><span style="color: #ed9d13">&quot;.game-text&quot;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">scoreDisplay</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">document</span><span style="color: #d0d0d0">.querySelector(</span><span style="color: #ed9d13">&quot;.score&quot;</span><span style="color: #d0d0d0">);</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">restartButton</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">document</span><span style="color: #d0d0d0">.querySelector(</span><span style="color: #ed9d13">&quot;.game-text &gt; button&quot;</span><span style="color: #d0d0d0">);</span>
+
+<span style="color: #999999; font-style: italic">//Setting</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">GAME_ROW</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">20</span><span style="color: #d0d0d0">;</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">GAME_COLS</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">10</span><span style="color: #d0d0d0">;</span>
+
+<span style="color: #999999; font-style: italic">// Variable</span>
+<span style="color: #6ab825; font-weight: bold">let</span> <span style="color: #d0d0d0">score</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">;</span>
+<span style="color: #6ab825; font-weight: bold">let</span> <span style="color: #d0d0d0">duration</span> <span style="color: #d0d0d0">=</span> <span style="color: #3677a9">500</span><span style="color: #d0d0d0">;</span>
+<span style="color: #6ab825; font-weight: bold">let</span> <span style="color: #d0d0d0">downInterval;</span>
+<span style="color: #6ab825; font-weight: bold">let</span> <span style="color: #d0d0d0">tempMovingItem;</span>
+<span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">movingItem</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">{</span>
+    <span style="color: #d0d0d0">...</span>
+<span style="color: #d0d0d0">}</span>
+
+<span style="color: #999999; font-style: italic">//functions</span>
+<span style="color: #6ab825; font-weight: bold">function</span> <span style="color: #d0d0d0">init()</span> <span style="color: #d0d0d0">{</span>
+<span style="color: #d0d0d0">}</span>
+
+<span style="color: #6ab825; font-weight: bold">function</span> <span style="color: #d0d0d0">prependNewLine()</span> <span style="color: #d0d0d0">{</span>
+<span style="color: #d0d0d0">}</span>
+
+<span style="color: #6ab825; font-weight: bold">...</span>
+
+<span style="color: #999999; font-style: italic">// event handling</span>
+<span style="color: #24909d">document</span><span style="color: #d0d0d0">.addEventListener(</span><span style="color: #ed9d13">&quot;keydown&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">e</span> <span style="color: #d0d0d0">=&gt;</span> <span style="color: #d0d0d0">{</span>
+<span style="color: #d0d0d0">})</span>
+
+<span style="color: #d0d0d0">restartButton.addEventListener(</span><span style="color: #ed9d13">&quot;click&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">=&gt;</span> <span style="color: #d0d0d0">{</span>
+<span style="color: #d0d0d0">})</span>
+</pre></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">
+            <h1>HTML+CSS</h1>
+        </div>
+
+        <div class="leftcol2">
+            <ul>
+                <span>この発表資料はHTML+CSSで製作！
+                    <ul>
+                        <li>PowerPointのレイアウトを真似</li>
+                        <li>cssをもっと勉強するときれいな<br>HPが作れそう</li>
+                        <li>時間を書ければアニメーションも</li>
+                        <li>HTMLのclassは非常に便利</li>
+                        <li>Textの色をgradientを適用</li>
+                        <li>単位のem/remが文字サイズを1</li>
+                        <li>htmlにソースコードを入れるためにcssをいれてみたり楽しんだ！</li>
+                        <li>...etc</li>
+                    </ul>
+                </span>
+
+            </ul>
+        </div>
+        <div class="rightcol2">
+
+            <div><span><h3>HTML</h3></span></div>
+            <div><span><h3>CSS</h3></span></div>
+            <div>
+<!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #3399cc">&lt;!</span><span style="color: #cccccc">DOCTYPE</span> <span style="color: #cccccc">html</span><span style="color: #3399cc">&gt;</span>
+    <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">html</span> <span style="color: #cccccc">lang</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;ja&quot;</span><span style="color: #3399cc">&gt;</span>
+    <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">head</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">meta</span> <span style="color: #cccccc">charset</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;UTF-8&quot;</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">meta</span> <span style="color: #cccccc">http-equiv</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;X-UA-Compatible&quot;</span> <span style="color: #cccccc">content</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;IE=edge&quot;</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">meta</span> <span style="color: #cccccc">name</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;viewport&quot;</span> <span style="color: #cccccc">content</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;width=device-width, initial-scale=1.0&quot;</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">title</span><span style="color: #3399cc">&gt;</span><span style="color: #cccccc; border: 1px solid #FF0000">イム　プレゼン</span><span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">title</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">link</span> <span style="color: #cccccc">rel</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;stylesheet&quot;</span> <span style="color: #cccccc">href</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;style.css&quot;</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">script</span> <span style="color: #cccccc">type</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;text/javascript&quot;</span> <span style="color: #cccccc">src</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;script.js&quot;</span><span style="color: #3399cc">&gt;&lt;/</span><span style="color: #cccccc">script</span><span style="color: #3399cc">&gt;</span>
+    <span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">head</span><span style="color: #3399cc">&gt;</span>
+    <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">body</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">div</span> <span style="color: #cccccc">class</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;titleSlide&quot;</span><span style="color: #3399cc">&gt;</span>
+            <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">div</span><span style="color: #3399cc">&gt;</span>
+                <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">h1</span><span style="color: #3399cc">&gt;</span><span style="color: #cccccc">Final</span> <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">br</span><span style="color: #3399cc">&gt;</span><span style="color: #cccccc">Presentation</span><span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">h1</span><span style="color: #3399cc">&gt;</span>
+                <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">h6</span><span style="color: #3399cc">&gt;</span><span style="color: #cccccc">23</span><span style="color: #00cdcd">.3.28</span><span style="color: #cccccc; border: 1px solid #FF0000">　林　熙權</span><span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">h3</span><span style="color: #3399cc">&gt;</span>
+            <span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">div</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">div</span><span style="color: #3399cc">&gt;</span>
+        <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">div</span> <span style="color: #cccccc">class</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;slide&quot;</span><span style="color: #3399cc">&gt;</span>
+            <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">div</span> <span style="color: #cccccc">class</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;title&quot;</span><span style="color: #3399cc">&gt;</span>
+                <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">h1</span><span style="color: #3399cc">&gt;&lt;</span><span style="color: #cccccc">b</span><span style="color: #3399cc">&gt;</span><span style="color: #cccccc">Tetris</span><span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">b</span><span style="color: #3399cc">&gt;</span> <span style="color: #cccccc">only</span> <span style="color: #cccccc">using</span> <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">i</span><span style="color: #3399cc">&gt;</span><span style="color: #cccccc">HTML</span><span style="color: #3399cc">+</span><span style="color: #cccccc">CSS</span><span style="color: #3399cc">+</span><span style="color: #cccccc">Javascript</span><span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">i</span><span style="color: #3399cc">&gt;&lt;/</span><span style="color: #cccccc">h1</span><span style="color: #3399cc">&gt;</span>
+            <span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">div</span><span style="color: #3399cc">&gt;</span>
+            <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">div</span> <span style="color: #cccccc">class</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;leftcol&quot;</span><span style="color: #3399cc">&gt;</span>
+            <span style="color: #3399cc">...</span></pre>
+</div>
+    
+            </div>
+            <div>
+                <!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cdcd">.bg</span> <span style="color: #cccccc">{</span>
+    <span style="color: #cdcd00">opacity</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">.</span><span style="color: #cd00cd">3</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">left</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">top</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">width</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">100</span><span style="color: #3399cc">%</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">height</span><span style="color: #3399cc">:</span> <span style="color: #cdcd00">auto</span><span style="color: #cccccc">;</span>
+<span style="color: #cccccc">}</span>
+<span style="color: #00cdcd">.titleSlide</span><span style="color: #cccccc">{</span>
+    <span style="color: #cccccc">grid</span><span style="color: #3399cc">-</span><span style="color: #cccccc">column</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">/</span><span style="color: #cd00cd">5</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">text-align</span><span style="color: #3399cc">:</span> <span style="color: #cdcd00">center</span><span style="color: #cccccc">;</span>
+    <span style="color: #3399cc">-</span><span style="color: #cccccc">webkit</span><span style="color: #3399cc">-</span><span style="color: #cdcd00">text</span><span style="color: #3399cc">-</span><span style="color: #cccccc">stroke</span><span style="color: #3399cc">:</span><span style="color: #cd00cd">1px</span> <span style="color: #cd00cd">#000</span><span style="color: #cccccc">;</span>
+    <span style="color: #3399cc">-</span><span style="color: #cccccc">webkit</span><span style="color: #3399cc">-</span><span style="color: #cdcd00">background</span><span style="color: #3399cc">-</span><span style="color: #cdcd00">clip</span><span style="color: #3399cc">:</span> <span style="color: #cdcd00">text</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">background</span><span style="color: #3399cc">:</span> <span style="color: #3399cc">-</span><span style="color: #cccccc">webkit</span><span style="color: #3399cc">-</span><span style="color: #cccccc">linear</span><span style="color: #3399cc">-</span><span style="color: #cccccc">gradient(</span><span style="color: #cd00cd">#37f108</span><span style="color: #3399cc">,</span><span style="color: #cd00cd">#07cbee</span><span style="color: #cccccc">...</span>
+<span style="color: #cccccc">}</span>
+<span style="color: #cccccc">body</span> <span style="color: #cccccc">{</span>
+    <span style="color: #cdcd00">background-image</span><span style="color: #3399cc">:</span> <span style="color: #cd0000">url(&quot;transparent.jpg&quot;)</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">background-position</span><span style="color: #3399cc">:</span> <span style="color: #cdcd00">top</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">background-repeat</span><span style="color: #3399cc">:</span> <span style="color: #cdcd00">no-repeat</span><span style="color: #cccccc">;</span>
+    <span style="color: #cdcd00">background</span><span style="color: #3399cc">-</span><span style="color: #cdcd00">size</span><span style="color: #3399cc">:</span> <span style="color: #cccccc">cover;</span>
+<span style="color: #cccccc">}</span>
+<span style="color: #00cdcd">.slide</span> <span style="color: #cccccc">{</span>
+    <span style="color: #cdcd00">display</span><span style="color: #3399cc">:</span> <span style="color: #cccccc">grid;</span>
+<span style="color: #cccccc">...</span>
+</pre></div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="title">
+            <h1>Additional Infomation</h1>
+        </div>
+        <div class="leftcol">
+            <span>
+                <h3> Marp for vscode</h3>
+                <ul>
+                    <li>MarkdownでPPT作成ツール</li>
+                    <li>css 形式でtheme適用できる</li>
+                    <li>公式HP: <a href="https://marp.app/">https://marp.app/</a></li>
+                    <li>Document: <a href="https://marpit.marp.app/directives">https://marpit.marp.app/directives</a></li>
+                    
+                    <img src="https://raw.githubusercontent.com/marp-team/marp-vscode/main/docs/new-file.gif" alt="Create Marp Markdown" width="700">
+                </ul>
+
+            </span>
+        </div>
+        <div class="rightcol">
+            <span>
+                <h3>D2 for vscode</h3>
+                <ul>
+                    <li>コードでダイアグラムを簡単に作れるツール</li>
+                    <li>css 形式でtheme適用できる</li>
+                    <li>公式HP: <a href="https://d2lang.com/tour/intro/">https://d2lang.com/tour/intro/</a></li>
+                    <li>windows用DW: <a href="https://github.com/terrastruct/d2/releases">https://github.com/terrastruct/d2/releases</a></li>
+                    <img src="https://terrastruct-site-assets.s3.us-west-1.amazonaws.com/gifs/d2_vscode.gif" alt="D2" width="700">
+                </ul>
+            </span>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
