@@ -11,6 +11,12 @@
 </head>
 
 <body>
+    <div class="startPage">
+        <button class="slideButton">Slide</button>
+        <button class="scrollButton">Scroll</button>
+    </div>
+
+    
     <div class="titleSlide">
         <div>
             <h1>Final <br>Presentation</h1>
@@ -63,7 +69,8 @@
                 </li>
                 <li>element.classList.add()
                     <ul>
-                        <li>ある四角のliタグにmovingタグを追加し,その部分のバックグラウンド色が変わる<br>ようにCSSでclassを定義していることを見て<i><b>感動</b></i>。。。！</li>
+                        <li>ある四角のliタグにmovingタグを追加し,その部分のバックグラウンド色が変わる<br>ようにCSSでclassを定義していることを見て<i><b>感動</b></i>。。。！
+                        </li>
                     </ul>
                 </li>
 
@@ -98,7 +105,9 @@
                         <li>DOMを最初に</li>
                         <li>変数宣言</li>
                         <li>関数定義</li>
-                        <li>mainコード：今回は<b><i style="color:#edb313; -webkit-text-stroke:1px #000;">eventListenerのみ</i></b>で完成！</li>
+                        <li>mainコード：今回は<b><i
+                                    style="color:#edb313; -webkit-text-stroke:1px #000;">eventListenerのみ</i></b>で完成！
+                        </li>
 
                     </ul>
                 </li>
@@ -108,7 +117,9 @@
 
         <div class="rightcol">
             <div style="font-size: 14px;"">
-                <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">BLOCKS</span> <span style="color: #d0d0d0">from</span> <span style="color: #ed9d13">&quot;./blocks.js&quot;</span><span style="color: #d0d0d0">;</span>
+                <!-- HTML generated using hilite.me --><div style=" background: #202020;
+                overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                <pre style="margin: 0; line-height: 125%"><span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">BLOCKS</span> <span style="color: #d0d0d0">from</span> <span style="color: #ed9d13">&quot;./blocks.js&quot;</span><span style="color: #d0d0d0">;</span>
 <span style="color: #999999; font-style: italic">//DOM</span>
 <span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">playground</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">document</span><span style="color: #d0d0d0">.querySelector(</span><span style="color: #ed9d13">&quot;.playground &gt; ul&quot;</span><span style="color: #d0d0d0">);</span>
 <span style="color: #6ab825; font-weight: bold">const</span> <span style="color: #d0d0d0">gameText</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">document</span><span style="color: #d0d0d0">.querySelector(</span><span style="color: #ed9d13">&quot;.game-text&quot;</span><span style="color: #d0d0d0">);</span>
@@ -143,10 +154,11 @@
 
 <span style="color: #d0d0d0">restartButton.addEventListener(</span><span style="color: #ed9d13">&quot;click&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">()</span> <span style="color: #d0d0d0">=&gt;</span> <span style="color: #d0d0d0">{</span>
 <span style="color: #d0d0d0">})</span>
-</pre></div>
-
+</pre>
             </div>
+
         </div>
+    </div>
     </div>
 
     <div class="slide">
@@ -173,10 +185,17 @@
         </div>
         <div class="rightcol2">
 
-            <div><span><h3>HTML</h3></span></div>
-            <div><span><h3>CSS</h3></span></div>
+            <div><span>
+                    <h3>HTML</h3>
+                </span></div>
+            <div><span>
+                    <h3>CSS</h3>
+                </span></div>
             <div>
-<!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #3399cc">&lt;!</span><span style="color: #cccccc">DOCTYPE</span> <span style="color: #cccccc">html</span><span style="color: #3399cc">&gt;</span>
+                <!-- HTML generated using hilite.me -->
+                <div
+                    style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                    <pre style="margin: 0; line-height: 125%"><span style="color: #3399cc">&lt;!</span><span style="color: #cccccc">DOCTYPE</span> <span style="color: #cccccc">html</span><span style="color: #3399cc">&gt;</span>
     <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">html</span> <span style="color: #cccccc">lang</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;ja&quot;</span><span style="color: #3399cc">&gt;</span>
     <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">head</span><span style="color: #3399cc">&gt;</span>
         <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">meta</span> <span style="color: #cccccc">charset</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;UTF-8&quot;</span><span style="color: #3399cc">&gt;</span>
@@ -199,11 +218,14 @@
             <span style="color: #3399cc">&lt;/</span><span style="color: #cccccc">div</span><span style="color: #3399cc">&gt;</span>
             <span style="color: #3399cc">&lt;</span><span style="color: #cccccc">div</span> <span style="color: #cccccc">class</span><span style="color: #3399cc">=</span><span style="color: #cd0000">&quot;leftcol&quot;</span><span style="color: #3399cc">&gt;</span>
             <span style="color: #3399cc">...</span></pre>
-</div>
-    
+                </div>
+
             </div>
             <div>
-                <!-- HTML generated using hilite.me --><div style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #00cdcd">.bg</span> <span style="color: #cccccc">{</span>
+                <!-- HTML generated using hilite.me -->
+                <div
+                    style="background: #000000; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                    <pre style="margin: 0; line-height: 125%"><span style="color: #00cdcd">.bg</span> <span style="color: #cccccc">{</span>
     <span style="color: #cdcd00">opacity</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">.</span><span style="color: #cd00cd">3</span><span style="color: #cccccc">;</span>
     <span style="color: #cdcd00">left</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span>
     <span style="color: #cdcd00">top</span><span style="color: #3399cc">:</span> <span style="color: #cd00cd">0</span><span style="color: #cccccc">;</span>
@@ -226,7 +248,8 @@
 <span style="color: #00cdcd">.slide</span> <span style="color: #cccccc">{</span>
     <span style="color: #cdcd00">display</span><span style="color: #3399cc">:</span> <span style="color: #cccccc">grid;</span>
 <span style="color: #cccccc">...</span>
-</pre></div>
+</pre>
+                </div>
 
             </div>
 
@@ -244,9 +267,11 @@
                     <li>MarkdownでPPT作成ツール</li>
                     <li>css 形式でtheme適用できる</li>
                     <li>公式HP: <a href="https://marp.app/">https://marp.app/</a></li>
-                    <li>Document: <a href="https://marpit.marp.app/directives">https://marpit.marp.app/directives</a></li>
-                    
-                    <img src="https://raw.githubusercontent.com/marp-team/marp-vscode/main/docs/new-file.gif" alt="Create Marp Markdown" width="700">
+                    <li>Document: <a href="https://marpit.marp.app/directives">https://marpit.marp.app/directives</a>
+                    </li>
+
+                    <img src="https://raw.githubusercontent.com/marp-team/marp-vscode/main/docs/new-file.gif"
+                        alt="Create Marp Markdown" width="700">
                 </ul>
 
             </span>
@@ -258,8 +283,11 @@
                     <li>コードでダイアグラムを簡単に作れるツール</li>
                     <li>css 形式でtheme適用できる</li>
                     <li>公式HP: <a href="https://d2lang.com/tour/intro/">https://d2lang.com/tour/intro/</a></li>
-                    <li>windows用DW: <a href="https://github.com/terrastruct/d2/releases">https://github.com/terrastruct/d2/releases</a></li>
-                    <img src="https://terrastruct-site-assets.s3.us-west-1.amazonaws.com/gifs/d2_vscode.gif" alt="D2" width="700">
+                    <li>windows用DW: <a
+                            href="https://github.com/terrastruct/d2/releases">https://github.com/terrastruct/d2/releases</a>
+                    </li>
+                    <img src="https://terrastruct-site-assets.s3.us-west-1.amazonaws.com/gifs/d2_vscode.gif" alt="D2"
+                        width="700">
                 </ul>
             </span>
         </div>
