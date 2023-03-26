@@ -6,6 +6,22 @@
     height: auto;
 }
 
+
+body {
+    color:rgb(197, 155, 18);
+    background-image: url("./picture/backgroundedited.jfif");
+    background-color: #cccccc;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+
+.startPage { 
+    display: flex;
+    position: sticky;
+    top:20px;
+}
+
 .titleSlide{
     display:block;
     grid-column: 1/5;
@@ -18,17 +34,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-
-body {
-    color:rgb(197, 155, 18);
-    background-image: url("./picture/backgroundedited.jfif");
-    background-color: #cccccc;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;    
-}
-
 
 .slide {
     display: grid;
