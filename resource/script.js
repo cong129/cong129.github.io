@@ -10,9 +10,10 @@ console.log(slideStart);
 console.log(scrollStart);
 
 
-//functions
 //-------------------- SLIDE version -------------------------------
 
+
+//Functions
 function nextSlide() {
     slides[slideNumber].style.display = "none";
     if (slideNumber + 1 < slides.length) {
@@ -38,12 +39,13 @@ function restartPresent() {
     }
     titleSlide.style.display = "block";
 }
+
+
 //---------------------------SLIDE version----------------------------
 
 
-
-
 //---------------------------SCROLL version---------------------------
+//Functions
 function nextSlideScroll() {
 
     slides[slideNumber].classList.add("hidden");
@@ -80,8 +82,9 @@ function restartPresentScroll() {
     // $("window").animate({ scrollTop: 0 }, 'fast');
     window.scrollTo(0, 0);
 }
-//---------------------------SCROLL version---------------------------
 
+
+//---------------------------SCROLL version---------------------------
 
 function slideversion() {
     document.body.style.backgroundImage = "url('./picture/backgroundedited.jfif')";
@@ -137,6 +140,7 @@ function scrollversion() {
     }
 
 }
+
 
 
 //Event
