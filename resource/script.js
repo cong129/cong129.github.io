@@ -87,7 +87,7 @@ function restartPresentScroll() {
 //---------------------------SCROLL version---------------------------
 
 function slideversion() {
-    document.body.style.backgroundImage = "url('./picture/backgroundedited.jfif')";
+    document.body.style.backgroundImage = "url('./picture/slidebackground.png')";
     document.body.style.color = "rgb(197, 155, 18)";
     
     // Defualt Setting
